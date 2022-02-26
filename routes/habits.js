@@ -35,7 +35,10 @@ habitsRoute.get('/habit',(req,res)=>{
 })
 // Adding session of habit
 habitsRoute.post('/sess',(req,res)=>{
-    // const {rating,duration,remark}=req.body;
+    const {rating,duration,remark,uid,}=req.body;
+    const habit = await user.habits.id(habit_id).populate('singleSession');
+    habit.sessions.push(new singleSession({rating,duration,remark}))
+    habit.save()
 })
 
 
