@@ -1,8 +1,8 @@
-var mongoose = requrie('mongoose');
+const mongoose = requrie('mongoose');
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var SingleSessionSchema = new Schema ({
+const SingleSessionSchema = new Schema ({
   rating: {
     type: Number,
     min: 0,
@@ -20,7 +20,5 @@ var SingleSessionSchema = new Schema ({
     required: true,
   },
 
-  remarks: {
-    
-  }
+  remarks: String,
 }) 
