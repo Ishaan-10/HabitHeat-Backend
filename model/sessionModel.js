@@ -9,7 +9,7 @@ const SingleSessionSchema = new Schema({
         type: Number,
         min: 0,
         max: 5,
-        default: 2, // default: 2, set in state in Frontend
+        default: 0, // default: 2, set in state in Frontend
         required: true,
       },
 
@@ -20,6 +20,10 @@ const SingleSessionSchema = new Schema({
         type: Number,
         default: 60,
         required: true,
+      },
+      date:{
+        type:Date,
+        required:true
       },
       remarks: String
     }

@@ -31,10 +31,11 @@ habitsRoute.post('/add',async (req,res)=>{
 habitsRoute.get('/habit',async (req,res)=>{
     const {uid,habit_id}=req.body;
     const user = await userProfile.find({uid});
-    const motivation = await user.habit.motivation;
+    // const motivation = await user.habit.motivation;
     const habit = await user.habits.id(habit_id).populate('singleSession');
-    res.json(habit, motivation);
+    res.json(habit);
 })
+
 // Adding session of habit
 habitsRoute.post('/sess',async (req,res)=>{
     const {rating,duration,remark,uid,}=req.body;
