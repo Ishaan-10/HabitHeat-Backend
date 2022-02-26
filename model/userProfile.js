@@ -23,10 +23,13 @@ const userProfileSchema = new Schema({
         streak:Number,
         sessions:{
             type:mongoose.SchemaTypes.ObjectId,
-            ref:'SingleSessionSchema'
+            ref:'singleSession'
         }
     }],
-    streak:Number
+    streak:{
+        type:Number,
+        default:0,
+    }
 }, {timestamps:true})
 
 const userProfile = mongoose.model('userProfile', userProfileSchema);
