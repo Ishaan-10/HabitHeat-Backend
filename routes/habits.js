@@ -41,5 +41,4 @@ habitsRoute.post('/sess',async (req,res)=>{
     await habit.save()
 })
 
-
 module.exports = habitsRoute;
