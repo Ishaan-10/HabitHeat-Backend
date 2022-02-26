@@ -14,7 +14,7 @@ habitsRoute.get('/',async (req,res)=>{
 
 
 // Add new habit to track
-habitsRoute.post('/add',(req,res)=>{
+habitsRoute.post('/add',async (req,res)=>{
     const {name,uid} = req.body;
     const user = await userProfile.find({uid});
     user.habits.push({
@@ -27,18 +27,18 @@ habitsRoute.post('/add',(req,res)=>{
 })
 
 // About a single habit
-habitsRoute.get('/habit',(req,res)=>{
+habitsRoute.get('/habit',async (req,res)=>{
     const {uid,habit_id}=req.body;
     const user = await userProfile.find({uid});
     const habit = await user.habits.id(habit_id).populate('singleSession');
     res.json(habit);
 })
 // Adding session of habit
-habitsRoute.post('/sess',(req,res)=>{
+habitsRoute.post('/sess',async (req,res)=>{
     const {rating,duration,remark,uid,}=req.body;
     const habit = await user.habits.id(habit_id).populate('singleSession');
     habit.sessions.push(new singleSession({rating,duration,remark}))
-    habit.save()
+    await habit.save()
 })
 
 
