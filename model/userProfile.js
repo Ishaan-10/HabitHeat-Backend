@@ -21,6 +21,7 @@ const userProfileSchema = new Schema({
     habits:[{
         name:String,
         streak:Number,
+        motivation: String,
         sessions:{
             type:mongoose.SchemaTypes.ObjectId,
             ref:'singleSession'
