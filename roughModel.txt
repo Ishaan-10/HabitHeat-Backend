@@ -1,0 +1,35 @@
+Sessions: 
+  Rating: Int - (0-5) - default (2) - required:true 
+  'Are you starting or ending session?' - Start/End Time: default: Now
+  Duration: Int - 'In minutes': default: 60 - required
+  Remarks: String - 500 characters or so.
+  {Date}: default - today
+
+  // Remarks Start and End times are derivatives, what we actually want is the duration.
+
+
+Habit: 
+  Sessions: Sorted by Date
+  Name: String - required
+  StreakMin: {Number of days Habit maintained over > 2} - calculate
+  StreakMax: {Number of days Habit maintained over > 4} - calculate
+  {Heatmap of 3days to week}
+  {Heatmap of each month}
+  {Heatmap of Years}
+
+User: 
+  Name: {Get from flutter object}
+  Email: {Get from flutter object}
+  u_id: {Get from flutter object} - {for referencing in mongoDB}
+  Img: {Get from flutter object}
+  Habits: Num(Habits)
+  Streak: {Calculate cumulative streak using Habits}
+  {Heatmap of month} 
+
+
+// Heatmap details: 
+      Division per day -- click on that day to get the sessions/remarks of that day only
+      The shade for the day will be a function(time_duration_combined, rating_combined)
+      Each card has one heatmap 
+      Homescreen 30% has a combined heatmap.
+
