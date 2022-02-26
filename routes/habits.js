@@ -3,6 +3,7 @@ const habitsRoute = express.Router();
 const userProfile = require('../model/userProfile');
 const singleSession = require('../model/sessionModel');
 
+// Home screen
 habitsRoute.get('/',async (req,res)=>{
     console.log(req.query);
     const {email} = req.query;
@@ -11,6 +12,8 @@ habitsRoute.get('/',async (req,res)=>{
     res.json(user);
 })
 
+
+// Add new habit to track
 habitsRoute.post('/add',(req,res)=>{
     const {name,uid} = req.body;
     const user = await userProfile.find({uid});
@@ -20,8 +23,20 @@ habitsRoute.post('/add',(req,res)=>{
         sessions:new singleSession([]) // Changes needed
     })
     user.save();
+    res.end();
 })
 
+// About a single habit
+habitsRoute.get('/habit',(req,res)=>{
+    const {uid,habit_id}=req.body;
+    const user = await userProfile.find({uid});
+    const habit = await user.habits.id(habit_id).populate('singleSession');
+    res.json(habit);
+})
+// Adding session of habit
+habitsRoute.post('/sess',(req,res)=>{
+    // const {rating,duration,remark}=req.body;
+})
 
 
 module.exports = habitsRoute;
