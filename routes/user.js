@@ -5,9 +5,6 @@ const userProfile = require('../model/userProfile');
 // Getting user profile from flutter
 userRoute.post('/', async(req, res) => {
   const {name, email, uid, imgLink} = req.body;
-  // const user = await userProfile.id(email);
-  // user.push(new singleSession({rating,duration,remark}))
-  // await habit.save()
   const new_user = new userProfile(
     {
       name: name,
@@ -21,5 +18,9 @@ userRoute.post('/', async(req, res) => {
     if (err) return handleError(err);
   });  
 });
+
+// searching for a paticular user. 
+// return -- 
+// name, imgLink, Habits - List, Heatmap for last 30days.
 
 module.exports = userRoute;
