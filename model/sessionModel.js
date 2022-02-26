@@ -22,3 +22,6 @@ const SingleSessionSchema = new Schema ({
 
   remarks: String,
 }) 
+
+const SingleSession = mongoose.model('SingleSession', SingleSessionSchema);
+module.exports=SingleSession;
