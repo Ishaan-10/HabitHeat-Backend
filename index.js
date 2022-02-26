@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const testRouter = require('./routes/test');
 const habitRoute = require('./routes/habits');
+const userRoute = require('./routes/user');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config();
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 // Routes
 app.use('/test',testRouter);
 app.use('/habits',habitRoute);
+app.use('/user', userRoute);
 
 app.listen(process.env.PORT || 3000,()=>{
     console.log("Server running");
