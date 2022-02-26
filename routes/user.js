@@ -8,7 +8,7 @@ userRoute.post('/', async(req, res) => {
   const {name, email, uid, imgLink} = req.body;
   const user = await userProfile.find({uid});
   console.log(user);
-  if(user.size===0){
+  if(user.length===0){
     const new_user = new userProfile(
       {
         name: name,
