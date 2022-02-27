@@ -6,17 +6,23 @@ const singleSession = require('../model/sessionModel');
 // Home screen
 habitsRoute.get('/',async (req,res)=>{
     console.log(req.query);
-    const {email} = req.query;
-    const user = await userProfile.find({email}).populate('singleSession');
+    const {uid} = req.query;
+    const user = await userProfile.findOne({uid}).populate({
+        path:'habits',
+        populate:{
+            model:singleSession,
+            path:'sessions'
+        }
+    });
     console.log(user);
     res.json(user);
 })
 
-
 // Add new habit to track
 habitsRoute.post('/add',async (req,res)=>{
     const {name,motivation, uid} = req.body;
-    const user = await userProfile.find({uid});
+    const user = await userProfile.findOne({uid});
+    console.log(user);
     user.habits.push({
         name:name,
         motivation: motivation,
@@ -24,7 +30,7 @@ habitsRoute.post('/add',async (req,res)=>{
         sessions:new singleSession([]) // Changes needed
     })
     user.save();
-    res.end();
+    res.json(user);
 })
 
 // About a single habit
@@ -37,8 +43,8 @@ habitsRoute.get('/habit',async (req,res)=>{
 })
 
 // Adding session of habit
-habitsRoute.post('/sess',async (req,res)=>{
-    const {rating,duration,remark,uid,}=req.body;
+habitsRoute.post('/sess/add',async (req,res)=>{
+    const {rating,duration,remark,uid,date}=req.body;
     const habit = await user.habits.id(habit_id).populate('singleSession');
     habit.sessions.push(new singleSession({rating,duration,remark}))
     await habit.save()

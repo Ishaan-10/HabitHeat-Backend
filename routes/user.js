@@ -5,6 +5,7 @@ const userProfile = require('../model/userProfile');
 
 // Getting user profile from flutter
 userRoute.post('/', async(req, res) => {
+  console.log(req.body);
   const {name, email, uid, imgLink} = req.body;
   const user = await userProfile.find({uid});
   console.log(user);
@@ -18,9 +19,7 @@ userRoute.post('/', async(req, res) => {
       }
     );
     console.log("Made new user")
-    new_user.save((err) => {
-      if (err) return handleError(err);
-    });
+    new_user.save();
     res.json(new_user);
   }else{
     console.log("Already exists")

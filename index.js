@@ -18,6 +18,7 @@ db.once('open', function () {
 
 // Middlewares
 app.use(morgan('tiny'));
+app.use(express.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
 // Routes
